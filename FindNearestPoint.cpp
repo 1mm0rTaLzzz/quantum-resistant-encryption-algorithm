@@ -31,7 +31,6 @@ std::vector<double> operator*(std::vector<double> self, double number)
     return res;
 }
 
-
 VectorPair FindNearestPointForOneVector(std::vector<double> point, std::vector<double> vec)
 {
     int counter = 0;
@@ -57,10 +56,10 @@ std::vector<double> FindNearestPoint(std::vector<double> point, VectorPair conv_
     std::vector<double> vec1 = conv_vecs.first, vec2 = conv_vecs.second;
 
     VectorPair res_for_vec1 = FindNearestPointForOneVector(point, vec1),  res_for_vec2 = FindNearestPointForOneVector(point, vec2);
-    variants[0] = res_for_vec1.first;
-    variants[1] = res_for_vec1.second;
-    variants[2] = res_for_vec2.first;
-    variants[3] = res_for_vec2.second;
+    variants[0] = res_for_vec1.first - res_for_vec2.first*(-1);
+    variants[1] = res_for_vec1.second - res_for_vec2.first*(-1);
+    variants[2] = res_for_vec1.first - res_for_vec2.second*(-1);
+    variants[3] = res_for_vec1.second - res_for_vec2.second*(-1);
 
     double min_magnitude = VectorMagnitude(variants[0] - point);
     std::vector<double> min_vec = variants[0];
@@ -73,6 +72,6 @@ std::vector<double> FindNearestPoint(std::vector<double> point, VectorPair conv_
             min_vec = variants[i];
         }
     }
-    
+
     return min_vec;
 }
