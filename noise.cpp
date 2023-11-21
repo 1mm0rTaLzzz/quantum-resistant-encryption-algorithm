@@ -15,6 +15,7 @@ double vectorLength(const std::vector<double>& v) {
 
 
 std::vector<double> randomDirectionVector(int dimensions) {
+    srand(time(0));
     std::vector<double> v(dimensions);
     for (int i = 0; i < dimensions; ++i) {
         v[i] = static_cast<double>(rand()) / RAND_MAX * 2 - 1; // random from -1 to 1
@@ -31,6 +32,7 @@ std::vector<double> createRadiusVector(const std::vector<double>& v1, const std:
     std::vector<double> direction = randomDirectionVector(minVector.size()); // create vector random direction
 
     // create radius vector
+    srand(time(0));
     std::vector<double> radiusVector(minVector.size());
     for (int i = 0; i < minVector.size(); ++i) {
         radiusVector[i] = direction[i] * (static_cast<double>(rand()) / RAND_MAX) * minVectorLength / 2;
