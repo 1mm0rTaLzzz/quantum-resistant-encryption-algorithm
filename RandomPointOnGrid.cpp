@@ -1,39 +1,30 @@
 #include <iostream>
 #include <ctime>
 #include <vector>
+using std::vector;
 
-using namespace std;
-int main() {
+
+vector<double> RandomPoint (vector<double>& a,vector<double>& b)
+{
+    vector<double> Point;
     srand(time(0));
-    vector<double> primal1;
-    vector<double> primal2;
-    for(int i=0; i < 10;)
+    double t=(static_cast<double>(rand())/RAND_MAX)*2000-1000;
+    double m=(static_cast<double>(rand())/RAND_MAX)*2000-1000;
+    for(int i=0; i < a.size(); i++)
     {
-        int t=rand();
-        int p=rand();
-        primal1.push_back(t%10000);
-        primal2.push_back(p%10000);
-        i=1+i;
+        Point.push_back(a[i]*t+b[i]*m);
     }
-    vector<double> a1;
-    vector<double> a2;
-    for(int i=0; i < 10;)
+    return Point;
+} 
+// debag print
+int main()
+{
+    vector<double> r;
+    vector<double> a {5,6,3,7};
+    vector<double> b {4,2,5,4};
+    vector<double> P = RandomPoint(a,b);
+    for(int i=0; i < a.size(); i++)
     {
-        int t=rand();
-        int p=rand();
-        a1.push_back(t%10000);
-        a2.push_back(p%10000);
-        i=1+i;
+    std::cout<<P[i]<<std::endl;
     }
-    vector<double> e1;
-    vector<double> e2;
-    for(int i=0; i < 10;)
-    {
-        e1[i]=a1[i]*primal1[i];
-        e2[i]=a2[i]*primal2[i];
-        i=i+1;
-    }
-    cout<<e1[1]<<endl;
-    cout<<e1[2]<<endl;
-    cout<<a2[1];
 }
